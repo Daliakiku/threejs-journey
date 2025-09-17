@@ -2,6 +2,7 @@ console.log("pop that javascriptussy queen");
 
 import * as THREE from 'three';
 
+
 //canvas
 const canvas = document.querySelector('canvas.canvas');
 console.log(canvas);
