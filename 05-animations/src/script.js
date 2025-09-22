@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import gsap from 'gsap';
+console.log(gsap);
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -28,4 +30,26 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.render(scene, camera)
+
+//Clock
+const clock = new THREE.Clock();
+
+// Animate
+const tick = () => 
+{
+    const elapsedTime = clock.getElapsedTime();
+
+    //Update objects
+    mesh.position.y = Math.sin(elapsedTime);
+    //camera.lookAt(mesh.position);
+
+
+    //Render
+    renderer.render(scene, camera)
+
+    //Call the function on the next frame 
+    window.requestAnimationFrame(tick);
+}
+
+tick();
+
