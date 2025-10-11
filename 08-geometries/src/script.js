@@ -10,8 +10,23 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+//create an empty geometry
+const geometry = new THREE.BufferGeometry()
+
+const count = 500; //how many triangles we want
+//create an array to hold the positions of the vertices
+const positionsArray = new Float32Array(count * 3 * 3) // 3 vertices per triangle, 3 coordinates per vertex
+//fill the array with random values
+for (let i = 0; i < count * 3 * 3; i ++){
+    positionsArray[i] = (Math.random() - 0.5) * 4 //center around 0 and expand the range of the triangles
+}
+
+//create attribute and add array value to it
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3) // 3 coordinates per vertex
+//add attribute to geometry
+geometry.setAttribute('position', positionsAttribute)
+
 // Object
-const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
@@ -71,3 +86,4 @@ const tick = () =>
 }
 
 tick()
+
